@@ -4633,6 +4633,10 @@ a.link:hover {
     margin: 0;
 }
 
+.s-header__nav-list .s-header__nav__dat {
+    color: #ffffff99;
+}
+
 .s-header__btn {
     border-color: white;
 }
@@ -4647,7 +4651,46 @@ a.link:hover {
     font-weight: 700;
 }
 
-.s-about__content h2.text-pretitle {
-    line-height: 1.7;
-    margin-bottom: 10px;
+.video {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: #111111;
+    padding: 50px 10%;
+    align-items: center;
+
+    .video__content {
+        width: 30vw;
+        flex: 1 0 30%;
+    }
+
+    .text {
+        padding: 0 0 0 50px;
+        
+        .text-pretitle {
+            line-height: 1.7;
+            margin-bottom: 10px;
+            color: #ffffff99;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .video {
+        flex-direction: column;
+        padding: 50px 5%;
+
+        .video__content {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .text {
+            padding: 10px;
+        }
+    }
+
+    .ss-copyright {
+        text-align: left;
+    }
 }
