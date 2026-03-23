@@ -114,27 +114,27 @@
   /* lora-regular - latin */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Lora';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    src: url('./fonts/lora-v35-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('./fonts/poppins-v24-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
   /* lora-700 - latin */
   @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Lora';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    src: url('./fonts/lora-v35-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('./fonts/poppins-v24-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
 
 :root {
     --font-1 : "Montserrat", serif;
-    --font-2 : "Montserrat", sans-serif;
+    --font-2 : "Poppins", sans-serif;
 
     /* monospace
     */
-    --font-mono : Consolas, "Andale Mono", Courier, "Courier New", monospace;
+    --font-mono : Poppins, Consolas, "Andale Mono", Courier, "Courier New", monospace;
 }
 
 /* ------------------------------------------------------------------- 
@@ -142,22 +142,35 @@
  * ------------------------------------------------------------------- */
 :root {
 
-    /* color-1(#F9A828)
-     * color-2(#07617D)
+    /* Palette approximated from Farbpalette.png
+     * Primärfarben, Sekundärfarben, Akzentfarben, Neutrale
      */
-    --color-1 : #dd3a8e;
-    --color-2 : #f8ca96;
+    --primary-1: #f4b8c5; /* pale pink */
+    --primary-2: #cfe7f0; /* light blue */
+    --primary-3: #f5eee6; /* cream */
 
-    /* theme color variations
-     */
-    --color-1-lighter : hsla(37, 95%, 77%, 1);
-    --color-1-light   : hsla(37, 95%, 67%, 1);
-    --color-1-dark    : hsla(37, 95%, 47%, 1);
-    --color-1-darker  : hsla(37, 95%, 37%, 1);
-    --color-2-lighter : hsla(194, 89%, 46%, 1);
-    --color-2-light   : hsla(194, 89%, 36%, 1);
-    --color-2-dark    : hsla(194, 89%, 16%, 1);
-    --color-2-darker  : hsla(194, 89%, 10%, 1);
+    --secondary-1: #f4b07a; /* peach */
+    --secondary-2: #7fd7cd; /* mint */
+    --secondary-3: #b7c9b9; /* sage */
+
+    --accent-1: #25ff00; /* neon green */
+    --accent-2: #ff2ab0; /* hot pink */
+    --accent-3: #00e9ff; /* cyan */
+
+    /* mapped theme colors (keep existing variable names used across the stylesheet) */
+    --color-1 : var(--primary-1);
+    --color-2 : var(--primary-2);
+
+    /* theme color variations (derived from palette) */
+    --color-1-lighter : #ffd8e3; /* lighter pink */
+    --color-1-light   : #f7c6d2; /* light pink */
+    --color-1-dark    : #d77a98; /* darker pink */
+    --color-1-darker  : #b0546f; /* deep pink */
+
+    --color-2-lighter : #e6f6fb; /* very light blue */
+    --color-2-light   : #cfe7f0; /* light blue (primary-2) */
+    --color-2-dark    : #6aaec2; /* muted blue */
+    --color-2-darker  : #3b8796; /* deep blue */
 
     /* feedback colors
      * color-error(#ffd1d2), color-success(#c8e675), 
@@ -212,13 +225,13 @@
     --color-btn-text               : var(--color-black);
     --color-btn-hover              : var(--color-gray-11);
     --color-btn-hover-text         : var(--color-black);
-    --color-btn-primary            : var(--color-1);
-    --color-btn-primary-text       : var(--color-black);
-    --color-btn-primary-hover      : var(--color-1-dark);
+    --color-btn-primary            : var(--accent-2);
+    --color-btn-primary-text       : var(--color-white);
+    --color-btn-primary-hover      : var(--accent-3);
     --color-btn-primary-hover-text : var(--color-black);
-    --color-btn-stroke             : var(--color-black);
-    --color-btn-stroke-text        : var(--color-black);
-    --color-btn-stroke-hover       : var(--color-black);
+    --color-btn-stroke             : var(--secondary-3);
+    --color-btn-stroke-text        : var(--color-text-dark);
+    --color-btn-stroke-hover       : var(--secondary-2);
     --color-btn-stroke-hover-text  : var(--color-white);
 
     /* preloader
@@ -3205,7 +3218,7 @@ img.u-pull-left {
     height              : 100%;
     background-image    : url(../images/hero-bg.jpg);
     background-repeat   : no-repeat;
-    background-position : center 30%;
+    background-position : center 40%;
     background-size     : cover;
 }
 
@@ -3283,6 +3296,7 @@ img.u-pull-left {
     color             : white;
     margin-top        : 0;
     margin-bottom     : var(--vspace-2_5);
+    font-family: "Poppins", sans-serif;
 }
 
 .s-intro__more {
@@ -3698,7 +3712,7 @@ img.u-pull-left {
 .folio-list .brick {
     float   : left;
     width   : 50%;
-    padding : 0;
+    padding : 25px;
     margin  : 0;
 }
 
@@ -4010,30 +4024,13 @@ img.u-pull-left {
 .s-contact {
     --color-border      : rgba(255, 255, 255, .05);
 
-    background-color    : var(--color-gray-19);
-    background-image    : url(../images/fores.png);
+    background    : linear-gradient(45deg, var(--secondary-1), var(--primary-1));
     background-repeat   : no-repeat;
     background-position : center;
     background-size     : cover;
     padding-top         : var(--vspace-5);
     padding-bottom      : var(--vspace-3);
     position            : relative;
-}
-
-.s-contact::before {
-    display        : block;
-    content        : "";
-    position       : absolute;
-    top            : 0;
-    left           : 0;
-    right          : 0;
-    bottom         : 0;
-    width          : 100%;
-    height         : 100%;
-    background     : black;
-    pointer-events : none;
-    opacity        : .9;
-    z-index: 2;
 }
 
 .s-contact .row {
@@ -4510,13 +4507,13 @@ a.link:hover {
 }
 
 .map-address {
-    color: var(--color-gray-12);
+    color: white;
     text-align: left;
 }
 
 .map-info {
     font-size: 2.3rem;
-    color: var(--color-gray-12);
+    color: white;
     letter-spacing: 0.1em;
 }
 
@@ -4588,14 +4585,15 @@ a.link:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    color: var(--color-1);
-    text-shadow: 3px 3px 0 var(--color-2);
-    font-size: 5.5rem;
+    color: white;
+    text-shadow: 0 0 3px var(--color-black);
+    font-size: 7rem;
     z-index: 2;
     transform: translate(-50%, -50%);
     line-height: 1.2;
     font-weight: 700;
     text-align: center;
+    text-transform: lowercase;
 }
 
 #anfahrt .s-portfolio__header {
