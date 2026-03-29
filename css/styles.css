@@ -3695,7 +3695,7 @@ img.u-pull-left {
  *
  * ------------------------------------------------------------------- */
 .s-portfolio {
-    background : white;
+    background : linear-gradient(45deg, var(--color-2-light), var(--secondary-3));
     min-height : 800px;
     padding    : 0;
     position   : relative;
@@ -3711,9 +3711,9 @@ img.u-pull-left {
 /* ------------------------------------------------------------------- 
  * ## portfolio list
  * ------------------------------------------------------------------- */
-.folio-list {
+/* .folio-list {
     margin-top : calc(var(--vspace-1) * -5.5);
-}
+} */
 
 .folio-list .brick {
     float   : left;
@@ -4668,17 +4668,19 @@ a.link:hover {
 
 .text-spruch {
     font-family: "Poppins", sans-serif;
-    font-size: 4.5rem;
-    position:relative;
+    font-size: 5rem;
+    position: relative;
+    display: inline-block;
     line-height: 1.4;
     font-weight: 700;
+    width: 100%;
     color: var(--accent-2);
     text-align: center;
     margin: 0;
-    z-index: 11;
+    z-index: 1;
 
-    @media (min-width: 600px) {
-        font-size: 5rem;
+    @media (max-width: 600px) {
+        font-size: 4rem;
     }
 }
 
@@ -4686,11 +4688,65 @@ a.link:hover {
     content: "";
     display: block;
     position: absolute;
+    
+    width: 50%;
+    z-index: -1;
+    height: 320px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+}   
+
+#spruch1 .text-spruch::before {
     bottom: -80px;
     left: -330px;
-    width: 50%;
-    z-index: 10;
-    height: 370px;
-    background-size: cover;
     background-image: url(../images/Ticketkauf.png);
-}   
+
+    @media (max-width: 600px) {
+        left: -10px;
+        width: 38%;
+        height: 190px;
+    }
+}
+
+#spruch2 .text-spruch::before {
+    height: 330px;
+    width: 50%;
+    bottom: -80px;
+    right: -50px;
+    background-image: url(../images/double.png);
+
+     @media (max-width: 600px) {
+        right: -12px;
+        width: 130%;
+        bottom: -210px;
+        height: 330px;
+    }
+}
+
+#spruch3 .text-spruch::before {
+    bottom: -80px;
+    left: -330px;
+    background-image: url(../images/weight.png);
+
+     @media (max-width: 600px) {
+        left: -130px;
+        width: 100%;
+        height: 290px;
+    }
+}
+
+#spruch4 .text-spruch::before {
+    height: 280px;
+    width: 100%;
+    bottom: -80px;
+    right: -130px;
+    background-image: url(../images/typ.png);
+
+     @media (max-width: 600px) {
+        left: 70px;
+        width: 100%;
+        height: 210px;
+    }
+}
