@@ -2182,8 +2182,9 @@ input[type="button"] {
     font-size: var(--text-s);
     text-transform: uppercase;
     letter-spacing: .35em;
-/*     height: var(--btn-height);
- */    line-height: calc(var(--btn-height) - 4px);
+    /*     height: var(--btn-height);
+ */
+    line-height: calc(var(--btn-height) - 4px);
     padding: .5rem 2rem;
     margin: 0 0.4rem var(--vspace-0_5) 0;
     color: var(--color-btn-text);
@@ -3010,7 +3011,8 @@ img.u-pull-left {
  * ------------------------------------------------------------------- */
 .s-header__menu-toggle {
     --menu-toggle-height: 4.2rem;
-
+    border-radius: 5px;
+    ;
     z-index: 102;
     padding-right: calc(var(--menu-toggle-height) + .2rem);
     padding-left: 1.2rem;
@@ -3083,7 +3085,7 @@ img.u-pull-left {
     line-height: 2.8rem;
     padding: var(--vspace-1_25) var(--vspace-1);
     height: 100%;
-    width: 300px;
+    width: 350px;
     transform: translateX(100%);
     overflow-y: auto;
     transition-property: transform;
@@ -3274,7 +3276,7 @@ img.u-pull-left {
 
 @media screen and (max-width: 600px) {
     .s-intro__bg {
-        height: 115%;
+        height: 105%;
     }
 }
 
@@ -3285,31 +3287,27 @@ img.u-pull-left {
     position: absolute;
     top: -20%;
     left: 50%;
-    transform-origin: 50% 0%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 150%;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 180vh;
     pointer-events: none;
     opacity: .3;
-    animation: godrays 15s ease-in-out infinite;
+    animation: godrays 25s ease-in-out infinite;
     mix-blend-mode: screen;
+    background-repeat: no-repeat;
+    background-position: top center;
 }
 
 @media screen and (max-width: 600px) {
     .s-intro__godrays {
-        top: -10%;
-        height: 180%;
-        opacity: 0.45;
-        transform: translateX(-50%) scale(1.05);
-        z-index: 2;
-        mix-blend-mode: screen;
-        pointer-events: none;
-    }
+         width: 150vw;
+        }
 }
 
 /* On small screens, trigger the hover-like span effects after 3s. */
 @media screen and (max-width: 600px) {
-    
+
     .ss-animated .text-spruch span {
         animation: textSpruchMobileHover 0.6s ease-in-out 3s forwards;
     }
@@ -3323,6 +3321,7 @@ img.u-pull-left {
     from {
         color: var(--accent-2);
     }
+
     to {
         color: var(--accent-1);
     }
@@ -3335,6 +3334,7 @@ img.u-pull-left {
         transform: scale(1);
         filter: blur(0.3px);
     }
+
     to {
         color: var(--accent-2);
         letter-spacing: .15em;
@@ -3350,29 +3350,31 @@ img.u-pull-left {
     }
 
     10% {
-        opacity: 0.6;
+        opacity: 0.3;
     }
 
     25% {
-        opacity: 1;
-        transform: translateX(-50%) rotate(-3deg) scale(1.05);
+        opacity: .7;
+        transform: translateX(-50%) rotate(-3deg) scale(1.25);
     }
 
     40% {
+        opacity: 0;
         transform: translateX(-50%) rotate(4deg) scale(1.08);
     }
 
     55% {
-        transform: translateX(-50%) rotate(8deg) scale(1.05);
+        opacity: 0;
+        transform: translateX(-50%) rotate(8deg) scale(.95);
     }
 
     70% {
-        opacity: 1;
+        opacity: .6;
         transform: translateX(-50%) rotate(2deg) scale(1.02);
     }
 
     85% {
-        opacity: 0.7;
+        opacity: 0.4;
         transform: translateX(-50%) rotate(-6deg) scale(1);
     }
 
@@ -3475,8 +3477,13 @@ img.u-pull-left {
 }
 
 @media screen and (max-width: 600px) {
+    .s-intro__content {
+        padding-top: 12vh;
+        padding-bottom: 12vh;
+    }
+
     .s-intro__subtitle {
-        margin-top: 50px;
+        margin-top: 5vh;
         font-size: var(--text-xxl);
     }
 }
@@ -3874,6 +3881,7 @@ img.u-pull-left {
 .s-portfolio {
     background-image: url(../images/grid.png);
     background-position: center;
+    background-size: 200%;
     height: 100%;
     padding: 0;
     position: relative;
@@ -3886,9 +3894,9 @@ img.u-pull-left {
 }
 
 @media screen and (max-width: 600px) {
-   .s-portfolio__content {
+    .s-portfolio__content {
         padding-top: var(--vspace-2);
-   }
+    }
 }
 
 /* ------------------------------------------------------------------- 
@@ -4051,6 +4059,14 @@ img.u-pull-left {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
+}
+
+/* If a folio item is explicitly closed (via JS), force-hide its info
+   even when hovered (useful for touch devices where hover is simulated). */
+.folio-item.closed .folio-item__info {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(100%) !important;
 }
 
 /* ------------------------------------------------------------------- 
@@ -4216,13 +4232,40 @@ img.u-pull-left {
 .s-contact {
     --color-border: rgba(255, 255, 255, .05);
 
-    background: linear-gradient(45deg, var(--secondary-1), var(--primary-1));
-    background-repeat: no-repeat;
+    background-image: url(../images/stars.png);
+    background-repeat: repeat;
     background-position: center;
-    background-size: cover;
+    background-size: 150%;
     padding-top: var(--vspace-5);
     padding-bottom: var(--vspace-3);
     position: relative;
+    animation: bgmove 60s linear infinite;
+}
+
+@keyframes bgmove {
+    0% {
+        background-position: center;
+    }
+
+    100% {
+        background-position: center 100%;
+    }
+    
+}
+
+.s-contact::before {
+    content: "";
+    z-index: 2;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    animation: bgfade 20s ease-in-out infinite alternate;
 }
 
 .s-contact .row {
@@ -4785,7 +4828,7 @@ a.link:hover {
 #anfahrt .s-portfolio__header {
     position: relative;
     z-index: 1;
-    background: url(../images/hero-bg.jpg);
+    background: url(../images/night.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -4801,7 +4844,22 @@ a.link:hover {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .9);
+    background: rgba(0, 0, 0, .8);
+    animation: bgfade 20s ease-in-out infinite alternate;
+}
+
+@keyframes bgfade {
+    0% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: .4;
+    }
+
+    100% {
+        opacity: .8;
+    }
 }
 
 #anfahrt .s-portfolio__header .row {
@@ -4954,9 +5012,12 @@ a.link:hover {
 }
 
 @media screen and (max-width: 600px) {
-   #spruch2, #spruch3, #spruch4 {
+
+    #spruch2,
+    #spruch3,
+    #spruch4 {
         padding-bottom: var(--vspace-5);
-   }
+    }
 }
 
 #spruch2 .text-spruch::before {
@@ -5062,3 +5123,4 @@ a.link:hover {
         transition: all 1s ease-in-out;
     }
 }
+
