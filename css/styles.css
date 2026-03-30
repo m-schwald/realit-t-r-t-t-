@@ -266,14 +266,14 @@
      */
     --color-btn: var(--color-gray-9);
     --color-btn-text: var(--color-black);
-    --color-btn-hover: var(--color-gray-11);
+    --color-btn-hover: var(--accent-3);
     --color-btn-hover-text: var(--color-black);
     --color-btn-primary: var(--accent-2);
     --color-btn-primary-text: var(--color-white);
     --color-btn-primary-hover: var(--accent-3);
     --color-btn-primary-hover-text: var(--color-black);
     --color-btn-stroke: var(--secondary-3);
-    --color-btn-stroke-text: var(--color-text-dark);
+    --color-btn-stroke-text: white;
     --color-btn-stroke-hover: var(--secondary-2);
     --color-btn-stroke-hover-text: var(--color-white);
 
@@ -2887,7 +2887,7 @@ img.u-pull-left {
 }
 
 .section-header--dark .lead {
-    color: rgba(255, 255, 255, 0.65);
+    color: white;
 }
 
 .section-header--dark.has-bottom-sep::before {
@@ -3085,7 +3085,8 @@ img.u-pull-left {
  * -------------------------------------------------------------------- */
 .s-header__nav {
     z-index: 200;
-    background-image: url(../images/grid.png);
+    background-image: url(../images/night.png);
+    mix-blend-mode: screen;
     background-position: center;
 
     color: var(--color-gray-10);
@@ -4707,10 +4708,24 @@ a.link:hover {
     padding-top: 2rem;
 }
 
-.anfahrt h2,
+.anfahrt h2 {
+    color: var(--accent-2);
+    margin-bottom: 5vh;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: var(--text-xxxl);
+}
+
 .anfahrt h4 {
-    color: white;
-    margin-top: 0;
+    color: var(--accent-2);
+    margin-bottom: 5vh;
+    font-weight: 500;
+    font-size: var(--text-lg);
+}
+
+.anfahrt span {
+    text-transform: uppercase;
+    transition: all 1s ease-in-out;
 }
 
 .anfahrt__buttons {
@@ -5003,6 +5018,12 @@ a.link:hover {
     }
 }
 
+#spruch.s-spruch:hover {
+    .text-spruch span {
+        color: var(--accent-3);
+    }
+}
+
 .text-spruch::before {
     content: "";
     display: block;
@@ -5040,7 +5061,12 @@ a.link:hover {
     }
 }
 
-#spruch2 .text-spruch::before {
+#spruch2 {
+    .text-spruch {
+        color: var(--accent-1);
+    }
+
+    .text-spruch::before {
     height: 330px;
     width: 50%;
     bottom: -80px;
@@ -5053,6 +5079,7 @@ a.link:hover {
         bottom: -220px;
         height: 237px;
     }
+}
 }
 
 #spruch3 .text-spruch::before {
@@ -5152,9 +5179,15 @@ a.link:hover {
     }
 }
 
-#about:hover,
-#about2:hover {
+#about:hover {
     .text-pretitle span {
+        color: var(--accent-2);
+        letter-spacing: .15em;
+        transition: all 1s ease-in-out;
+    }
+}
+#anfahrt:hover {
+    .anfahrt span {
         color: var(--accent-2);
         letter-spacing: .15em;
         transition: all 1s ease-in-out;
