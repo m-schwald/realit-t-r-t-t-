@@ -297,7 +297,13 @@
             const offset = i - text.length / 2;
 
             // Krümmung + Perspektive
-            const baseTranslateY = Math.abs(offset) * -7; //desktop: -14 TODO
+            // determine desktop vs mobile and compute base translateY
+            let baseTranslateY;
+            if (window.innerWidth >= 768) { // desktop
+                baseTranslateY = Math.abs(offset) * -14; // desktop: stronger curvature
+            } else { // mobile
+                baseTranslateY = Math.abs(offset) * -7; // mobile: gentler curvature
+            }
             const baseRotate = offset * -4;
             const baseScale = 1 - Math.abs(offset) * 0.05;
             span.style.transform = `translateY(${baseTranslateY}px) rotate(${baseRotate}deg) scale(${baseScale})`;
@@ -390,6 +396,7 @@
         }
     };
 
+    
 
 
     /* Initialize
@@ -406,5 +413,107 @@
         ssMoveTo();
         ssCurve();
     })();
+
+    /* Simple accordion built from the .folio-item sections
+     * This creates a mobile-friendly list of toggles using the
+     * thumbnail image as icon, the category as headline and the
+     * .folio-item__title content as the body.
+     */
+    const ssAccordion = function () {
+        const container = document.getElementById('info-accordion');
+        if (!container) return;
+
+        const folios = document.querySelectorAll('.folio-list .folio-item');
+        if (!folios || folios.length === 0) return;
+
+        folios.forEach(function (folio, i) {
+            const thumbImgEl = folio.querySelector('.folio-item__thumb img');
+            const iconSrc = thumbImgEl ? thumbImgEl.getAttribute('src') : '';
+            const catEl = folio.querySelector('.folio-item__cat');
+            const title = catEl ? catEl.textContent.trim() : ('Item ' + (i + 1));
+            const contentEl = folio.querySelector('.folio-item__title');
+            const contentHTML = contentEl ? contentEl.innerHTML : '';
+
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+
+            const header = document.createElement('button');
+            header.type = 'button';
+            header.className = 'accordion-header';
+            header.setAttribute('aria-expanded', 'false');
+
+            const iconWrap = document.createElement('span');
+            iconWrap.className = 'accordion-icon';
+            const img = document.createElement('img');
+            img.src = iconSrc || '';
+            img.alt = '';
+            iconWrap.appendChild(img);
+
+            const h = document.createElement('div');
+            h.className = 'accordion-title';
+            h.innerText = title;
+
+            const indicator = document.createElement('span');
+            indicator.className = 'accordion-toggle-indicator';
+            indicator.innerText = '+';
+
+            header.appendChild(iconWrap);
+            header.appendChild(h);
+            header.appendChild(indicator);
+
+            const body = document.createElement('div');
+            body.className = 'accordion-content';
+            body.innerHTML = contentHTML;
+
+            header.addEventListener('click', function () {
+                const expanded = header.getAttribute('aria-expanded') === 'true';
+
+                if (!expanded) {
+                    header.setAttribute('aria-expanded', 'true');
+                    indicator.innerText = '\u2212'; // en dash as minus
+                    body.classList.add('open');
+
+                    // wait for images to load and next frame to get accurate scrollHeight
+                    const imgs = body.querySelectorAll('img');
+                    const setHeight = () => {
+                        // add tiny buffer in case of subpixel rounding
+                        body.style.maxHeight = (body.scrollHeight + 64) + 'px';
+                    };
+
+                    if (imgs.length) {
+                        const promises = Array.from(imgs).map(img => new Promise(res => {
+                            if (img.complete) return res();
+                            img.addEventListener('load', res);
+                            img.addEventListener('error', res);
+                        }));
+                        Promise.all(promises).then(() => requestAnimationFrame(setHeight));
+                    } else {
+                        requestAnimationFrame(setHeight);
+                    }
+
+                } else {
+                    header.setAttribute('aria-expanded', 'false');
+                    indicator.innerText = '+';
+                    body.style.maxHeight = null;
+                    body.classList.remove('open');
+                }
+            });
+
+            // keyboard support
+            header.addEventListener('keydown', function (ev) {
+                if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    header.click();
+                }
+            });
+
+            item.appendChild(header);
+            item.appendChild(body);
+            container.appendChild(item);
+        });
+    };
+
+    // initialize accordion after function declaration
+    ssAccordion();
 
 })(document.documentElement);

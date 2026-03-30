@@ -3286,7 +3286,7 @@ img.u-pull-left {
 
 @media screen and (max-width: 600px) {
     .s-intro__bg {
-        height: 105%;
+        height: clamp(105%);
     }
 }
 
@@ -3500,13 +3500,125 @@ img.u-pull-left {
     }
 
     .s-intro__subtitle {
-        margin-top: 5vh;
+        margin-top: 3vh;
         font-size: var(--text-xxl);
     }
+
+    .s-intro__title {
+    --text-multiplier: 1;
+    line-height: 400%;
+    margin-top: 7vh;
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    perspective: 500px;
+    font-weight: 700;
+    width: 80vw;
+    letter-spacing: .2rem;
+}
+
+.s-intro__title span {
+    display: inline-block;
+    transform-origin: bottom center;
+    font-weight: 600;
+    font-size: 9rem;
+    margin: 0 -8px;
+}
+
+.s-intro__subtitle {
+    font-weight: 500;
+    font-size: var(--text-xl);
+    margin-bottom: 5vh;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: white;
+    margin-top: 2vh;
+}
 }
 
 .s-intro__more {
     --vspace-btn: var(--vspace-1_5);
+}
+
+/* ==================================================
+ * Accordion built from folio items
+ * ================================================== */
+.info-accordion {
+    display: block;
+    width: 92%;
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+/* Replace the circular folio grid with the accordion: hide the grid entirely */
+.folio-list.bricks {
+    display: none;
+}
+.accordion-item {
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    width: 100%;
+    /* use a darker site pink for better contrast */
+    background: var(--accent-2);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: var(--color-white);
+    box-shadow: none;
+}
+.accordion-icon {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+.accordion-icon img { width: 100%; height: 100%; object-fit: cover; display:block; }
+.accordion-title {
+    font-weight: 700;
+    text-transform: none;
+    color: var(--color-white);
+    font-size: 2rem;
+}
+.accordion-toggle-indicator {
+    margin-left: auto;
+    font-size: 2rem;
+    color: white;
+}
+.accordion-content {
+    padding: 0 1rem;
+    color: #fff;
+    /* darker translucent panel for readability */
+    background: rgba(0,0,0,0.28);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 300ms ease, padding 300ms ease;
+    line-height: 1.6;
+    font-size: 1.5rem;
+}
+.accordion-content.open {
+    padding: 2rem;
+}
+
+.accordion-content p,
+.accordion-content h4,
+.accordion-content li {
+    margin: 0 0 1rem 0;
+}
+
+/* show accordion and hide brick grid on small screens */
+@media screen and (max-width: 900px) {
+    /* keep existing rules for narrow viewports, but do not hide the grid
+       so accordion is always visible alongside the bricks */
+    .info-accordion { display: block; }
 }
 
 .s-intro__more-btn {
@@ -3646,7 +3758,6 @@ img.u-pull-left {
 @media screen and (max-width: 600px) {
     .s-intro__title {
         --text-multiplier: .5;
-        margin-top: 45%;
     }
 
     .s-intro__social {
