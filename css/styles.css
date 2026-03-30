@@ -3086,7 +3086,7 @@ img.u-pull-left {
 .s-header__nav {
     z-index: 200;
     background-image: url(../images/night.png);
-    mix-blend-mode: screen;
+    mix-blend-mode: multiply;
     background-position: center;
 
     color: var(--color-gray-10);
@@ -3900,7 +3900,7 @@ img.u-pull-left {
  *
  * ------------------------------------------------------------------- */
 .s-portfolio {
-    background-image: url(../images/grid.png);
+    background: linear-gradient(45deg, var(--secondary-2), var(--primary-3));
     background-position: center;
     background-size: 200%;
     height: 100%;
@@ -4866,6 +4866,7 @@ a.link:hover {
     background: url(../images/night.png);
     background-size: cover;
     background-repeat: no-repeat;
+    padding: 5vh 0;
 }
 
 #anfahrt .s-portfolio__header::before {
@@ -5192,4 +5193,9 @@ a.link:hover {
         letter-spacing: .15em;
         transition: all 1s ease-in-out;
     }
+}
+
+#video.s-video {
+    background: black;
+    padding: 5vh 0;
 }
