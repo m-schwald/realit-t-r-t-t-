@@ -277,8 +277,8 @@
 
         const palettes = {
             primary: ['--primary-1','--primary-2','--primary-3'],
-            secondary: ['--secondary-1','--secondary-2','--secondary-3'],
-            accent: ['--accent-3']
+            /* secondary: ['--secondary-1','--secondary-2','--secondary-3'], */
+            accent: ['--accent-1','--accent-2'] 
         };
 
         const spans = [];
@@ -297,7 +297,7 @@
             const offset = i - text.length / 2;
 
             // Krümmung + Perspektive
-            const baseTranslateY = Math.abs(offset) * -5;
+            const baseTranslateY = Math.abs(offset) * -7; //desktop: -14 TODO
             const baseRotate = offset * -4;
             const baseScale = 1 - Math.abs(offset) * 0.05;
             span.style.transform = `translateY(${baseTranslateY}px) rotate(${baseRotate}deg) scale(${baseScale})`;

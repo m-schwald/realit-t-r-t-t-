@@ -145,6 +145,15 @@
     /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+/* oi */
+@font-face {
+    font-display: swap;
+    font-family: 'Oi';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/oi-v21-latin-regular.woff2') format('woff2');
+}
+
 :root {
     --font-1: "Montserrat", serif;
     --font-2: "Poppins", sans-serif;
@@ -176,11 +185,11 @@
     --secondary-3: #b7c9b9;
     /* sage */
 
-    --accent-1: #25ff00;
+    --accent-1: #27f6d7;
     /* neon green */
-    --accent-2: #ff2ab0;
+    --accent-2: #d232c2;
     /* hot pink */
-    --accent-3: #00e9ff;
+    --accent-3: #ffcc00;
     /* cyan */
 
     /* mapped theme colors (keep existing variable names used across the stylesheet) */
@@ -3301,8 +3310,8 @@ img.u-pull-left {
 
 @media screen and (max-width: 600px) {
     .s-intro__godrays {
-         width: 150vw;
-        }
+        width: 150vw;
+    }
 }
 
 /* On small screens, trigger the hover-like span effects after 3s. */
@@ -3451,20 +3460,22 @@ img.u-pull-left {
 }
 
 .s-intro__title {
-    --text-title-size: 10.4rem;
     --text-multiplier: 1;
-    margin-top: 50px;
+    margin-top: 10vh;
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     display: inline-block;
     perspective: 500px;
+    font-weight: 900;
+    letter-spacing: .2rem;
 }
 
 .s-intro__title span {
     display: inline-block;
     transform-origin: bottom center;
-    font-weight: 700;
-    font-size: 10rem;
+    font-weight: 900;
+    font-size: 14rem;
+    margin: 0 -10px;
 }
 
 .s-intro__subtitle {
@@ -3480,6 +3491,11 @@ img.u-pull-left {
     .s-intro__content {
         padding-top: 12vh;
         padding-bottom: 12vh;
+    }
+
+    .s-intro__title span {
+        font-size: 10rem;
+        margin: 0;
     }
 
     .s-intro__subtitle {
@@ -3694,6 +3710,10 @@ img.u-pull-left {
 
 .s-about__desc span {
     color: var(--color-2);
+}
+
+#about2.s-about {
+    background: linear-gradient(180deg, var(--primary-1) 0%, var(--primary-3)100%);
 }
 
 /* ------------------------------------------------------------------- 
@@ -4250,7 +4270,7 @@ img.u-pull-left {
     100% {
         background-position: center 100%;
     }
-    
+
 }
 
 .s-contact::before {
@@ -5063,11 +5083,27 @@ a.link:hover {
     }
 }
 
+#spruch5 .text-spruch::before {
+    height: 300px;
+    width: 40%;
+    bottom: -80px;
+    right: -200px;
+    background-image: url(../images/dance.png);
+
+    @media (max-width: 600px) {
+        left: 70px;
+        width: 100%;
+        height: 210px;
+        bottom: -220px;
+    }
+}
+
+
 .glitch {
     position: relative;
     color: black;
-    font-size: 4rem;
-    font-weight: bold;
+    font-weight: 900;
+    font-size: inherit;
 }
 
 .glitch::before,
@@ -5116,11 +5152,11 @@ a.link:hover {
     }
 }
 
-#about:hover {
+#about:hover,
+#about2:hover {
     .text-pretitle span {
         color: var(--accent-2);
         letter-spacing: .15em;
         transition: all 1s ease-in-out;
     }
 }
-
