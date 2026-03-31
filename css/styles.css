@@ -3085,25 +3085,34 @@ img.u-pull-left {
  * -------------------------------------------------------------------- */
 .s-header__nav {
     z-index: 200;
-    background-image: url(../images/night.png);
-    mix-blend-mode: multiply;
-    background-position: center;
-
     color: var(--color-gray-10);
     font-family: var(--font-2);
     font-size: 1.5rem;
     line-height: 2.8rem;
     padding: var(--vspace-1_25) var(--vspace-1);
-    height: 100%;
+    height: 100vh;
     width: 350px;
     transform: translateX(100%);
-    overflow-y: auto;
+    overflow: hidden;
     transition-property: transform;
     transition-duration: 0.4s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     position: fixed;
     right: 0;
     top: 0;
+    mix-blend-mode: hard-light;
+}
+
+.s-header__nav__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200%;
+    height: 200%;
+    background-image: url(../images/stars.png);
+    background-position: center 0%;
+    z-index: -1;
+    animation: bgmove 40s reverse infinite linear;
 }
 
 .s-header__nav a,
@@ -3127,6 +3136,7 @@ img.u-pull-left {
 
 .s-header__nav-adress {
     text-align: center;
+    margin-bottom: var(--vspace-3);
 }
 
 .s-header__nav-list {
@@ -3172,13 +3182,13 @@ img.u-pull-left {
 .s-header__nav-close-btn span::after {
     content: "";
     display: block;
-    height: 2px;
-    width: 12px;
+    height: 8px;
+    width: 32px;
     background-color: white;
-    margin-top: -1px;
+    margin-top: -10px;
     position: absolute;
     top: 50%;
-    left: 9px;
+    left: -3px;
 }
 
 .s-header__nav-close-btn span::before {
@@ -3505,35 +3515,35 @@ img.u-pull-left {
     }
 
     .s-intro__title {
-    --text-multiplier: 1;
-    line-height: 400%;
-    margin-top: 7vh;
-    font-family: "Poppins", sans-serif;
-    text-transform: uppercase;
-    display: inline-block;
-    perspective: 500px;
-    font-weight: 700;
-    width: 80vw;
-    letter-spacing: .2rem;
-}
+        --text-multiplier: 1;
+        line-height: 400%;
+        margin-top: 7vh;
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
+        display: inline-block;
+        perspective: 500px;
+        font-weight: 700;
+        width: 80vw;
+        letter-spacing: .2rem;
+    }
 
-.s-intro__title span {
-    display: inline-block;
-    transform-origin: bottom center;
-    font-weight: 600;
-    font-size: 9rem;
-    margin: 0 -8px;
-}
+    .s-intro__title span {
+        display: inline-block;
+        transform-origin: bottom center;
+        font-weight: 600;
+        font-size: 11rem;
+        margin: 0 -8px;
+    }
 
-.s-intro__subtitle {
-    font-weight: 500;
-    font-size: var(--text-xl);
-    margin-bottom: 5vh;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    color: white;
-    margin-top: 2vh;
-}
+    .s-intro__subtitle {
+        font-weight: 500;
+        font-size: var(--text-xl);
+        margin-bottom: 5vh;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        color: white;
+        margin-top: 2vh;
+    }
 }
 
 .s-intro__more {
@@ -3543,67 +3553,154 @@ img.u-pull-left {
 /* ==================================================
  * Accordion built from folio items
  * ================================================== */
-.info-accordion {
+.accordion-container {
     display: block;
-    width: 92%;
-    max-width: 900px;
-    margin: 2rem auto;
+    width: 100%;
+    padding: 5vh 10vw;
+}
+
+.info-accordion {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 25px;
 }
 
 /* Replace the circular folio grid with the accordion: hide the grid entirely */
 .folio-list.bricks {
     display: none;
 }
+
 .accordion-item {
-    border-radius: 6px;
+    border-radius: 5px;
     margin-bottom: 1rem;
     overflow: hidden;
     width: 100%;
+    flex: 0 1 47%;
+    border: 3px solid transparent;
+    transition: border-color 2s ease-in-out;
 }
+
 .accordion-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 1rem;
+    gap: 2rem;
     cursor: pointer;
     width: 100%;
-    /* use a darker site pink for better contrast */
-    background: var(--accent-2);
-    border: 1px solid rgba(0,0,0,0.06);
     color: var(--color-white);
     box-shadow: none;
+    margin: 0;
+    position: relative;
+    min-height: 100px;
+    background: transparent;
+    border: none;
+    justify-content: flex-end;
+    flex-direction: row;
+    padding: 0;
 }
+
+.accordion-item:hover {
+    border: 3px solid var(--accent-3);
+    transition: border-color .3s ease-in-out;
+
+    .accordion-title {
+        color: var(--accent-3);
+        transition: color 0.3s ease-in-out;
+    }
+
+    .accordion-toggle-indicator {
+        color: var(--accent-3);
+        transition: color 0.3s ease-in-out;
+    }
+
+    .accordion-icon img {
+        filter: brightness(1.1);
+        transition: filter .3s ease-in-out;
+    }
+
+    .accordion-content p span {
+        color: var(--accent-2);
+        transition: all 1s ease-in-out;
+        letter-spacing: .2rem;
+    }
+}
+
+.accordion-header.reverse {
+    flex-direction: row-reverse;
+}
+
+.accordion-header[aria-expanded="true"] {
+    border-radius: 5px 5px 0 0;
+    border: none;
+}
+
 .accordion-icon {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     display: inline-block;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
 }
-.accordion-icon img { width: 100%; height: 100%; object-fit: cover; display:block; }
+
+.accordion-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    display: block;
+    transition: filter 2s ease-in-out;
+}
+
 .accordion-title {
     font-weight: 700;
     text-transform: none;
-    color: var(--color-white);
-    font-size: 2rem;
-}
-.accordion-toggle-indicator {
-    margin-left: auto;
-    font-size: 2rem;
     color: white;
+    font-size: 4rem;
+    z-index: 2;
+    letter-spacing: 4px;
+    transition: color 2s ease-in-out;
 }
+
+.accordion-toggle-indicator {
+    font-size: 5rem;
+    color: white;
+    z-index: 2;
+    padding: 0 2rem;
+    transition: color 2s ease-in-out;
+}
+
 .accordion-content {
     padding: 0 1rem;
     color: #fff;
     /* darker translucent panel for readability */
-    background: rgba(0,0,0,0.28);
+    background: rgba(0, 0, 0, 0.28);
     max-height: 0;
     overflow: hidden;
     transition: max-height 300ms ease, padding 300ms ease;
     line-height: 1.6;
-    font-size: 1.5rem;
+
+    p {
+        font-size: 1.8rem;
+        padding-bottom: 2rem;
+    }
+
+    p span {
+        text-transform: uppercase;
+        transition: color 1s ease-in-out;
+        font-weight: 600;
+    }
+
+    a.link {
+        color: var(--accent-1);
+        transition: color 0.5s ease-in-out;
+    }
 }
+
 .accordion-content.open {
     padding: 2rem;
 }
@@ -3616,9 +3713,34 @@ img.u-pull-left {
 
 /* show accordion and hide brick grid on small screens */
 @media screen and (max-width: 900px) {
+
     /* keep existing rules for narrow viewports, but do not hide the grid
        so accordion is always visible alongside the bricks */
-    .info-accordion { display: block; }
+    .info-accordion {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .accordion-header {
+        min-height: 80px;
+    }
+
+    .accordion-title {
+        font-size: 2.5rem;
+        max-width: 56%;
+        hyphens: auto;
+        white-space: normal;
+        line-height: 90%;
+    }
+
+    .accordion-toggle-indicator {
+        padding: 0 1rem;
+    }
+
+    .accordion-content p {
+        font-size: 1.5rem;
+    }
 }
 
 .s-intro__more-btn {
@@ -4376,13 +4498,19 @@ img.u-pull-left {
 
 @keyframes bgmove {
     0% {
-        background-position: center;
+        background-position: center 0%;
     }
 
     100% {
         background-position: center 100%;
     }
 
+}
+
+@media screen and (max-width: 600px) {
+    .s-contact {
+        padding: var(--vspace-1) 0;
+    }
 }
 
 .s-contact::before {
@@ -4740,12 +4868,12 @@ img.u-pull-left {
  *
  * ------------------------------------------------------------------- */
 a.link {
-    color: var(--color-2);
+    color: var(--accent-1);
     margin-top: 10px;
 }
 
 a.link:hover {
-    color: var(--color-1);
+    color: var(--accent-3);
 }
 
 .summary {
@@ -5179,19 +5307,19 @@ a.link:hover {
     }
 
     .text-spruch::before {
-    height: 330px;
-    width: 50%;
-    bottom: -80px;
-    right: -50px;
-    background-image: url(../images/double.png);
+        height: 330px;
+        width: 50%;
+        bottom: -80px;
+        right: -50px;
+        background-image: url(../images/double.png);
 
-    @media (max-width: 600px) {
-        right: -12px;
-        width: 140%;
-        bottom: -220px;
-        height: 237px;
+        @media (max-width: 600px) {
+            right: -12px;
+            width: 140%;
+            bottom: -220px;
+            height: 237px;
+        }
     }
-}
 }
 
 #spruch3 {
@@ -5203,7 +5331,7 @@ a.link:hover {
         bottom: -80px;
         left: -330px;
         background-image: url(../images/weight.png);
-        
+
         @media (max-width: 600px) {
             left: -130px;
             width: 100%;
@@ -5304,6 +5432,7 @@ a.link:hover {
         transition: all 1s ease-in-out;
     }
 }
+
 #anfahrt:hover {
     .anfahrt span {
         color: var(--accent-2);
@@ -5315,4 +5444,10 @@ a.link:hover {
 #video.s-video {
     background: black;
     padding: 5vh 0;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  display: block;
 }

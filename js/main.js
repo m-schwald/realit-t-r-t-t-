@@ -276,9 +276,9 @@
         el.innerHTML = "";
 
         const palettes = {
-            primary: ['--primary-1','--primary-2','--primary-3'],
+            primary: ['--primary-1', '--primary-2', '--primary-3'],
             /* secondary: ['--secondary-1','--secondary-2','--secondary-3'], */
-            accent: ['--accent-1','--accent-2'] 
+            accent: ['--accent-1', '--accent-2']
         };
 
         const spans = [];
@@ -299,10 +299,10 @@
             // Krümmung + Perspektive
             // determine desktop vs mobile and compute base translateY
             let baseTranslateY;
-            if (window.innerWidth >= 768) { // desktop
+            if (window.innerWidth >= 600) { // desktop
                 baseTranslateY = Math.abs(offset) * -14; // desktop: stronger curvature
             } else { // mobile
-                baseTranslateY = Math.abs(offset) * -7; // mobile: gentler curvature
+                baseTranslateY = Math.abs(offset) * -5; // mobile: gentler curvature
             }
             const baseRotate = offset * -4;
             const baseScale = 1 - Math.abs(offset) * 0.05;
@@ -396,7 +396,7 @@
         }
     };
 
-    
+
 
 
     /* Initialize
@@ -440,6 +440,9 @@
             const header = document.createElement('button');
             header.type = 'button';
             header.className = 'accordion-header';
+            if (i % 2 !== 0) {
+                header.classList.add('reverse');
+            }
             header.setAttribute('aria-expanded', 'false');
 
             const iconWrap = document.createElement('span');
