@@ -3249,6 +3249,10 @@ img.u-pull-left {
     .s-header__menu-toggle {
         right: 2.4rem;
     }
+    .s-header__nav {
+        width: 60vw;
+        mix-blend-mode: normal;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -3258,6 +3262,7 @@ img.u-pull-left {
 
     .s-header__nav {
         width: 90vw;
+        mix-blend-mode: normal;
     }
 }
 
@@ -3343,7 +3348,7 @@ img.u-pull-left {
     }
 
     to {
-        color: var(--accent-1);
+        color: var(--accent-3);
     }
 }
 
@@ -3687,6 +3692,8 @@ img.u-pull-left {
     p {
         font-size: 1.8rem;
         padding-bottom: 2rem;
+        font-weight: 600;
+        color: #2e2e4e;
     }
 
     p span {
@@ -3696,8 +3703,9 @@ img.u-pull-left {
     }
 
     a.link {
-        color: var(--accent-1);
+        color: darkgreen;
         transition: color 0.5s ease-in-out;
+        text-decoration: underline;
     }
 }
 
