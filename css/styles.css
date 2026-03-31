@@ -189,7 +189,7 @@
     /* neon green */
     --accent-2: #d232c2;
     /* hot pink */
-    --accent-3: #ffcc00;
+    --accent-3: #ffa200;
     /* cyan */
 
     /* mapped theme colors (keep existing variable names used across the stylesheet) */
@@ -5130,7 +5130,7 @@ a.link:hover {
     }
 }
 
-#spruch.s-spruch:hover {
+#spruch2.s-spruch:hover {
     .text-spruch span {
         color: var(--accent-3);
     }
@@ -5194,16 +5194,22 @@ a.link:hover {
 }
 }
 
-#spruch3 .text-spruch::before {
-    bottom: -80px;
-    left: -330px;
-    background-image: url(../images/weight.png);
+#spruch3 {
+    .text-spruch {
+        color: var(--accent-3);
+    }
 
-    @media (max-width: 600px) {
-        left: -130px;
-        width: 100%;
-        height: 290px;
-        bottom: -220px;
+    .text-spruch::before {
+        bottom: -80px;
+        left: -330px;
+        background-image: url(../images/weight.png);
+        
+        @media (max-width: 600px) {
+            left: -130px;
+            width: 100%;
+            height: 290px;
+            bottom: -220px;
+        }
     }
 }
 
