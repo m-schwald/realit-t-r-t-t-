@@ -4963,6 +4963,12 @@ a.link:hover {
     font-size: var(--text-xxxl);
 }
 
+@media screen and (max-width: 600px) {
+    .anfahrt h2 {
+        font-size: var(--text-xl);
+    }
+}
+
 .anfahrt h4 {
     color: var(--accent-2);
     margin-bottom: 5vh;

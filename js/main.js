@@ -276,10 +276,12 @@
         el.innerHTML = "";
 
         const palettes = {
-            primary: ['--primary-1', '--primary-2', '--primary-3'],
-            /* secondary: ['--secondary-1','--secondary-2','--secondary-3'], */
-            accent: ['--accent-1', '--accent-2']
+/*              primary: ['--primary-3',  '--primary-2', '--primary-3'],
+ */            secondary: ['--secondary-1'  ,'--secondary-3'/*,'--secondary-3' */ ],
+             accent: [ '--accent-3'] 
         };
+
+        console.log(12, palettes)
 
         const spans = [];
 
