@@ -281,8 +281,6 @@
              accent: [ '--accent-3'] 
         };
 
-        console.log(12, palettes)
-
         const spans = [];
 
         text.split("").forEach((char, i) => {
