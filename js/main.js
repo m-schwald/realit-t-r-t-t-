@@ -399,6 +399,34 @@
 
 
 
+    /* image lightbox
+    * ----------------------------------------------------- */
+    const ssImageLightbox = function () {
+        const dialog = document.getElementById('img-lightbox');
+        if (!dialog) return;
+
+        const dialogImg = dialog.querySelector('.img-lightbox__img');
+        const dialogCaption = dialog.querySelector('.img-lightbox__caption');
+        const closeBtn = dialog.querySelector('.img-lightbox__close');
+
+        document.querySelectorAll('.s-infoimages__trigger').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                dialogImg.src = btn.dataset.img;
+                dialogImg.alt = btn.dataset.caption || '';
+                dialogCaption.textContent = btn.dataset.caption || '';
+                dialog.showModal();
+            });
+        });
+
+        closeBtn.addEventListener('click', function () {
+            dialog.close();
+        });
+
+        dialog.addEventListener('click', function (e) {
+            if (e.target === dialog) dialog.close();
+        });
+    };  // end ssImageLightbox
+
     /* Initialize
      * ------------------------------------------------------ */
     (function ssInit() {
@@ -412,6 +440,7 @@
         ssBackToTop();
         ssMoveTo();
         ssCurve();
+        ssImageLightbox();
     })();
 
     /* Simple accordion built from the .folio-item sections

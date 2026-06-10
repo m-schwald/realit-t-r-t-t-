@@ -76,8 +76,20 @@
             <section id="intro" class="s-intro target-section">
                 <div class="s-intro__bg rellax" data-rellax-speed="-5"></div>
                 <div class="s-intro__godrays"></div>
+
                 <div class="row s-intro__content">
                     <div class="column lg-12 s-intro__content-inner">
+
+                        <!-- Ausverkauft-Stempel
+                        ----------------------------------------------- -->
+                        <div class="s-intro__stamp" aria-label="Ausverkauft">
+                            <div class="stamp-box">
+                                <p class="stamp-title">Ausverkauft!</p>
+                                <p class="stamp-sub">Kein Ticketverkauf vor&nbsp;Ort!</p>
+                                <p class="stamp-link">Ticketb&ouml;rse:&ensp;<a href="https://t.me/+_MRz-FgMnfpkYzZi" target="_blank" rel="noopener noreferrer">Telegram-Gruppe</a></p>
+                            </div>
+                        </div>
+
                         <h3 class="s-intro__pretitle">
                             Willkommen in der </h3>
                         <!-- <img class="s-intro__title" src="images/headline.png" alt="Homepage"> -->
@@ -608,6 +620,25 @@
                     <div id="info-accordion" class="info-accordion" aria-label="Info Accordion"></div>
                 </div>
 
+                <!-- Lageplan & Lineup
+                ----------------------------------------------- -->
+                <div class="row s-infoimages" data-animate-block>
+                    <div class="column lg-6 tab-12 s-infoimages__item" data-animate-el>
+                        <figure class="s-infoimages__figure">
+                            <button class="s-infoimages__trigger" data-img="images/lageplan.png" data-caption="Lageplan" aria-label="Lageplan vergr&ouml;&szlig;ern">
+                                <img src="images/lageplan.png" alt="Lageplan" loading="lazy">
+                            </button>
+                        </figure>
+                    </div>
+                    <div class="column lg-6 tab-12 s-infoimages__item" data-animate-el>
+                        <figure class="s-infoimages__figure">
+                            <button class="s-infoimages__trigger" data-img="images/lineup_farbig_kl.jpg" data-caption="Lineup" aria-label="Lineup vergr&ouml;&szlig;ern">
+                                <img src="images/lineup_farbig_kl.jpg" alt="Lineup" loading="lazy">
+                            </button>
+                        </figure>
+                    </div>
+                </div>
+
             </section>
 
             <section id="spruch4" class="s-spruch">
@@ -690,6 +721,16 @@
 
     <!-- Java Script
     ================================================== -->
+    <!-- Image lightbox dialog
+    ================================================== -->
+    <dialog id="img-lightbox" aria-label="Bild Vollansicht">
+        <button class="img-lightbox__close" aria-label="Schlie&szlig;en">&times;</button>
+        <figure class="img-lightbox__figure">
+            <img class="img-lightbox__img" src="" alt="">
+            <figcaption class="img-lightbox__caption"></figcaption>
+        </figure>
+    </dialog>
+
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
